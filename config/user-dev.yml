@@ -1,0 +1,37 @@
+server:
+  port: 8751
+
+spring:
+  zipkin:
+    base-url: http://localhost:9411
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.2.72.108:3306/spring-cloud-auth?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    username: root
+    password: root
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: com.qk.userservice.entity                  # 所有Entity别名类所在包
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml
+
+#  rabbitmq:
+#    host: 10.2.72.108
+#    port: 5672
+#    username: admin
+#    password: admin
+#    publisher-confirms: true
+#    virtual-host: /
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+  instance:
+    prefer-ip-address: true
+
+feign:
+  hystrix:
+    enabled: true
